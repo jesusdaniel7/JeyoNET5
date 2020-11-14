@@ -9,6 +9,6 @@ namespace Jeyo.Models
     {
         public int TipoEgresoId { get; set; }
         public string Nombre { get; set; }
-        public virtual IReadOnlyCollection<Egreso> Egreso { get; set; }
+        public virtual ICollection<Egreso> Egreso { get; set; }
     }
 }

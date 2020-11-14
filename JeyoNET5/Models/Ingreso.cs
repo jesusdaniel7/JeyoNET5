@@ -15,6 +15,6 @@ namespace Jeyo.Models
         public virtual Paciente Paciente { get; set; }
         public int UnidadId { get; set; }
         public virtual Unidad Unidad { get; set; }
-        public virtual ICollection<HistorialClinico> HistorialClinico { get; set; }
+        public bool estado { get; set; } = true;
     }
 }

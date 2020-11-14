@@ -13,6 +13,6 @@ namespace Jeyo.Models
         public virtual TipoEgreso TipoEgresos { get; set; }
         public int PacienteId { get; set; }
         public virtual Paciente Pacientes { get; set; }
-        public virtual ICollection<HistorialClinico> HistorialClinico { get; set; }
+        public bool estado { get; set; } = true;
     }
 }

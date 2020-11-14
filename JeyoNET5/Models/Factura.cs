@@ -15,9 +15,7 @@ namespace Jeyo.Models
         public Double Monto { get; set; } = 0;
         public Double Descuento { get; set; } = 0;
         public Double Total { get; set; }
-        public int EstadoId { get; set; }
-        public virtual Estado Estado { get; set; }
-        public virtual ICollection<Egreso> Egresos { get; set; }
+        public bool Estado { get; set; }
 
     }
 }
