@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Jeyo.Models
+namespace JeyoNET5.Models
 {
     public class Ingreso
     {
@@ -16,5 +16,7 @@ namespace Jeyo.Models
         public int UnidadId { get; set; }
         public virtual Unidad Unidad { get; set; }
         public bool estado { get; set; } = true;
+        public virtual ICollection<Servicio> Servicios { get; set; }
+
     }
 }

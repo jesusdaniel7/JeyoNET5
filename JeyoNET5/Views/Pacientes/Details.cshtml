@@ -1,4 +1,4 @@
-﻿@model Jeyo.Models.Paciente
+﻿@model JeyoNET5.Models.Paciente
 
 @{
     ViewData["Title"] = "Details";
@@ -38,7 +38,7 @@
             @Html.DisplayNameFor(model => model.Sexo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Sexo.SexoId)
+            @Html.DisplayFor(model => model.Sexo.Nombre)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Nacionalidad)
@@ -71,6 +71,38 @@
             @Html.DisplayFor(model => model.Direccion)
         </dd>
     </dl>
+</div>
+<div>
+
+
+    <h2>Ingresos</h2>
+    @foreach (var item in Model.Ingresos)
+    {
+        <h6>Id del ingreso: @item.IngresoId</h6>
+        <h6>Fecha del ingreso: @item.FechaIngreso</h6>
+    }
+
+    <h2>Egresos</h2>
+    @foreach (var item in Model.Egresos)
+    {
+        <h6>Id del egresi: @item.EgresoId</h6>
+        <h6>Fecha del egreso: @item.FechaEgreso</h6>
+    }
+
+    <h2>Historial Clinico</h2>
+    @foreach (var item in Model.HistorialClinico)
+    {
+        <h6>Id del historial: @item.HistorialClinicoId</h6>
+        <h6>Detalles: @item.Detallles</h6>
+    }
+    <h2>Facturas</h2>
+    @foreach (var item in Model.Facturas)
+    {
+        <h6>Id del ingreso: @item.FacturaId</h6>
+        <h6>Total de la factura: @item.Total</h6>
+        <h6>Estado de la factura: @item.Estado</h6>
+}
+
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.PacienteId">Edit</a> |

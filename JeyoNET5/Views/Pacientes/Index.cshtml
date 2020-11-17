@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Jeyo.Models.Paciente>
+﻿@model IEnumerable<JeyoNET5.Models.Paciente>
 
 @{
     ViewData["Title"] = "Index";
@@ -82,6 +82,8 @@
                 <a asp-action="Edit" asp-route-id="@item.PacienteId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.PacienteId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.PacienteId">Delete</a>
+                <a asp-controller="Ingresos" asp-action="Create" asp-route-id="@item.PacienteId">Ingresar</a>
+                <a asp-controller="Egresos" asp-action="Create" asp-route-id="@item.PacienteId">Dar de alta</a>
             </td>
         </tr>
 }

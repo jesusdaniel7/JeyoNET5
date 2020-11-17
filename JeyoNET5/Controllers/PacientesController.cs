@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Jeyo.Models;
+using JeyoNET5.Models;
 using JeyoNET5.Data;
 
 namespace JeyoNET5.Controllers
@@ -24,11 +24,16 @@ namespace JeyoNET5.Controllers
         {
             var applicationDbContext = _context.Pacientes.Include(p => p.Sexo);
             return View(await applicationDbContext.ToListAsync());
+
         }
 
         // GET: Pacientes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            //var pacienteDB = await _context.Pacientes.FirstOrDefaultAsync(x => x.PacienteId == id);
+            //ViewData["SexoId"] = new SelectList(_context.Sexo, "SexoId", "SexoId", paciente.SexoId);
+
+            //ViewData["Ingresos"] = await _context.Pacientes.Include(x => x.Ingresos).FirstOrDefaultAsync(m => m.PacienteId == id);
             if (id == null)
             {
                 return NotFound();
@@ -36,7 +41,12 @@ namespace JeyoNET5.Controllers
 
             var paciente = await _context.Pacientes
                 .Include(p => p.Sexo)
+                 .Include(p => p.Ingresos)
+                 .Include(p => p.Egresos)
+                 .Include(p => p.Facturas)
+                 .Include(p => p.HistorialClinico)
                 .FirstOrDefaultAsync(m => m.PacienteId == id);
+        
             if (paciente == null)
             {
                 return NotFound();
@@ -63,7 +73,8 @@ namespace JeyoNET5.Controllers
             {
                 _context.Add(paciente);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Create", "Ingresos", new { area = "" });
+
             }
             ViewData["SexoId"] = new SelectList(_context.Sexo, "SexoId", "SexoId", paciente.SexoId);
             return View(paciente);

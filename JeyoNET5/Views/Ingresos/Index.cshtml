@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Jeyo.Models.Ingreso>
+﻿@model IEnumerable<JeyoNET5.Models.Ingreso>
 
 @{
     ViewData["Title"] = "Index";
@@ -37,10 +37,10 @@
                 @Html.DisplayFor(modelItem => item.FechaIngreso)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TipoIngreso.TipoIngresoId)
+                @Html.DisplayFor(modelItem => item.TipoIngreso.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Paciente.PacienteId)
+                @Html.DisplayFor(modelItem => item.Paciente.Nombre)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Unidad.Id)

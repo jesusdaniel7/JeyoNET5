@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Jeyo.Models;
+using JeyoNET5.Models;
 using JeyoNET5.Data;
 
 namespace JeyoNET5.Controllers
@@ -47,10 +47,15 @@ namespace JeyoNET5.Controllers
         }
 
         // GET: Egresos/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create(int? id)
         {
+
+            if (id == null) { return NotFound("No se ha seleccionado ningun paciente"); }
+            ViewBag.id = id;
+                var paciente = await _context.Pacientes.FirstOrDefaultAsync(x => x.PacienteId == id);
+            ViewBag.paciente = paciente;
             ViewData["PacienteId"] = new SelectList(_context.Pacientes, "PacienteId", "PacienteId");
-            ViewData["TipoEgresoId"] = new SelectList(_context.TipoEgresos, "TipoEgresoId", "TipoEgresoId");
+            ViewData["TipoEgresoId"] = new SelectList(_context.TipoEgresos, "TipoEgresoId", "Nombre");
             return View();
         }
 
@@ -59,8 +64,38 @@ namespace JeyoNET5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EgresoId,FechaEgreso,TipoEgresoId,PacienteId,estado")] Egreso egreso)
+        public async Task<IActionResult> Create([Bind("EgresoId,FechaEgreso,TipoEgresoId,PacienteId")] Egreso egreso)
         {
+            //Modificando el estado de ingreso del paciente
+            var ingreso = _context.Ingresos.OrderByDescending(t => t.FechaIngreso).FirstOrDefault();
+
+            if(ingreso == null) { return NotFound();}
+            ingreso.estado = false;
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(ingreso);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!EgresoExists(egreso.EgresoId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+
+
+            //Creando el egreso
+            egreso.estado = true;
             if (ModelState.IsValid)
             {
                 _context.Add(egreso);
@@ -69,6 +104,9 @@ namespace JeyoNET5.Controllers
             }
             ViewData["PacienteId"] = new SelectList(_context.Pacientes, "PacienteId", "PacienteId", egreso.PacienteId);
             ViewData["TipoEgresoId"] = new SelectList(_context.TipoEgresos, "TipoEgresoId", "TipoEgresoId", egreso.TipoEgresoId);
+
+
+            
             return View(egreso);
         }
 

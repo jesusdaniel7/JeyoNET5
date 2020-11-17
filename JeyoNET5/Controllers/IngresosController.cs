@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Jeyo.Models;
+using JeyoNET5.Models;
 using JeyoNET5.Data;
 
 namespace JeyoNET5.Controllers
@@ -48,11 +48,20 @@ namespace JeyoNET5.Controllers
         }
 
         // GET: Ingresos/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create(int? id)
         {
-            ViewData["PacienteId"] = new SelectList(_context.Pacientes, "PacienteId", "PacienteId");
-            ViewData["TipoIngresoId"] = new SelectList(_context.TipoIngresos, "TipoIngresoId", "TipoIngresoId");
+            if(id == null) { return NotFound("No se ha seleccionado ningun paciente"); }
+            ViewData["PacienteId"] = new SelectList(_context.Pacientes, "PacienteId", "Nombre");
+
+            
+            ViewBag.id = id;
+            var paciente = await _context.Pacientes.FirstOrDefaultAsync(x => x.PacienteId == id);
+            var pacienteNombre = paciente.Nombre;
+            ViewBag.paciente = paciente;
+
+            ViewData["TipoIngresoId"] = new SelectList(_context.TipoIngresos, "TipoIngresoId", "Nombre");
             ViewData["UnidadId"] = new SelectList(_context.Unidades, "Id", "Id");
+
             return View();
         }
 
@@ -61,8 +70,10 @@ namespace JeyoNET5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IngresoId,FechaIngreso,TipoIngresoId,PacienteId,UnidadId,estado")] Ingreso ingreso)
+        public async Task<IActionResult> Create([Bind("IngresoId,FechaIngreso,TipoIngresoId,PacienteId,UnidadId")] Ingreso ingreso)
         {
+            var pacienteID = ingreso.PacienteId;
+            ingreso.estado = true;
             if (ModelState.IsValid)
             {
                 _context.Add(ingreso);

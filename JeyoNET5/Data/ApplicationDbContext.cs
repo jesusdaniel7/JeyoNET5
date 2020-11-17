@@ -1,4 +1,4 @@
-﻿using Jeyo.Models;
+﻿using JeyoNET5.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -25,6 +25,8 @@ namespace JeyoNET5.Data
         public DbSet<TipoUnidad> TipoUnidad { get; set; }
         public DbSet<Unidad> Unidades { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Servicio> Servicios { get; set; }
+
 
     }
 }
