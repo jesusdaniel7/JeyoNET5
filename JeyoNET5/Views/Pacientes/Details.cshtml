@@ -96,13 +96,16 @@
         <h6>Detalles: @item.Detallles</h6>
     }
     <h2>Facturas</h2>
-    @foreach (var item in Model.Facturas)
+    @foreach (var item in Model.Ingresos)
     {
-        <h6>Id del ingreso: @item.FacturaId</h6>
-        <h6>Total de la factura: @item.Total</h6>
-        <h6>Estado de la factura: @item.Estado</h6>
-}
+        if (item.Factura != null)
+        {
 
+            <h6>Id del historial: @item.Factura.Monto</h6>
+            <h6>Detalles: @item.Factura.Estado</h6>
+        }
+        else { <h7>Una factura por generar </h7>}
+    }
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.PacienteId">Edit</a> |

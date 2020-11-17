@@ -10,23 +10,23 @@ using JeyoNET5.Models;
 
 namespace JeyoNET5.Controllers
 {
-    public class FacturasController : Controller
+    public class ServiciosController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public FacturasController(ApplicationDbContext context)
+        public ServiciosController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Facturas
+        // GET: Servicios
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Facturas.Include(f => f.Ingreso);
+            var applicationDbContext = _context.Servicios.Include(s => s.Ingreso);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Facturas/Details/5
+        // GET: Servicios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,53 +34,45 @@ namespace JeyoNET5.Controllers
                 return NotFound();
             }
 
-            var factura = await _context.Facturas
-                .Include(f => f.Ingreso)
-                .FirstOrDefaultAsync(m => m.FacturaId == id);
-            if (factura == null)
+            var servicio = await _context.Servicios
+                .Include(s => s.Ingreso)
+                .FirstOrDefaultAsync(m => m.ServicioId == id);
+            if (servicio == null)
             {
                 return NotFound();
             }
 
-            return View(factura);
+            return View(servicio);
         }
 
-        // GET: Facturas/Create
-        public async Task<IActionResult> Create(int? id)
+        // GET: Servicios/Create
+        public IActionResult Create(int? id)
         {
-            ViewBag.Ingreso = await _context.Ingresos.Include(x => x.Paciente).FirstOrDefaultAsync(x => x.IngresoId == id);
-            ViewBag.Monto = _context.Servicios.Where(x => x.IngresoId == id).Sum(x => x.Monto);
+            if(id == null) { return NotFound("Debe ingresar algun ingreso");}
 
-            if (id == null) { return NotFound("No has ingresado el ingreso"); }
             ViewBag.id = id;
             ViewData["IngresoId"] = new SelectList(_context.Ingresos, "IngresoId", "IngresoId");
             return View();
         }
 
-        // POST: Facturas/Create
+        // POST: Servicios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FacturaId,Codigo,Fecha,Monto,Descuento,Total,Estado,IngresoId")] Factura factura)
+        public async Task<IActionResult> Create([Bind("ServicioId,Nombre,Descripcion,Monto,IngresoId")] Servicio servicio)
         {
-
-            var exists = await _context.Facturas.AnyAsync(x => x.IngresoId == factura.IngresoId);
-
-            factura.Total = factura.Monto - (factura.Monto * factura.Descuento / 100);
-
-            if (exists){ return NotFound("La factura ya existe"); }
             if (ModelState.IsValid)
             {
-                _context.Add(factura);
+                _context.Add(servicio);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IngresoId"] = new SelectList(_context.Ingresos, "IngresoId", "IngresoId", factura.IngresoId);
-            return View(factura);
+            ViewData["IngresoId"] = new SelectList(_context.Ingresos, "IngresoId", "IngresoId", servicio.IngresoId);
+            return View(servicio);
         }
 
-        // GET: Facturas/Edit/5
+        // GET: Servicios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -88,23 +80,23 @@ namespace JeyoNET5.Controllers
                 return NotFound();
             }
 
-            var factura = await _context.Facturas.FindAsync(id);
-            if (factura == null)
+            var servicio = await _context.Servicios.FindAsync(id);
+            if (servicio == null)
             {
                 return NotFound();
             }
-            ViewData["IngresoId"] = new SelectList(_context.Ingresos, "IngresoId", "IngresoId", factura.IngresoId);
-            return View(factura);
+            ViewData["IngresoId"] = new SelectList(_context.Ingresos, "IngresoId", "IngresoId", servicio.IngresoId);
+            return View(servicio);
         }
 
-        // POST: Facturas/Edit/5
+        // POST: Servicios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FacturaId,Codigo,Fecha,Monto,Descuento,Total,Estado,IngresoId")] Factura factura)
+        public async Task<IActionResult> Edit(int id, [Bind("ServicioId,Nombre,Descripcion,Monto,IngresoId")] Servicio servicio)
         {
-            if (id != factura.FacturaId)
+            if (id != servicio.ServicioId)
             {
                 return NotFound();
             }
@@ -113,12 +105,12 @@ namespace JeyoNET5.Controllers
             {
                 try
                 {
-                    _context.Update(factura);
+                    _context.Update(servicio);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FacturaExists(factura.FacturaId))
+                    if (!ServicioExists(servicio.ServicioId))
                     {
                         return NotFound();
                     }
@@ -129,11 +121,11 @@ namespace JeyoNET5.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IngresoId"] = new SelectList(_context.Ingresos, "IngresoId", "IngresoId", factura.IngresoId);
-            return View(factura);
+            ViewData["IngresoId"] = new SelectList(_context.Ingresos, "IngresoId", "IngresoId", servicio.IngresoId);
+            return View(servicio);
         }
 
-        // GET: Facturas/Delete/5
+        // GET: Servicios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -141,31 +133,31 @@ namespace JeyoNET5.Controllers
                 return NotFound();
             }
 
-            var factura = await _context.Facturas
-                .Include(f => f.Ingreso)
-                .FirstOrDefaultAsync(m => m.FacturaId == id);
-            if (factura == null)
+            var servicio = await _context.Servicios
+                .Include(s => s.Ingreso)
+                .FirstOrDefaultAsync(m => m.ServicioId == id);
+            if (servicio == null)
             {
                 return NotFound();
             }
 
-            return View(factura);
+            return View(servicio);
         }
 
-        // POST: Facturas/Delete/5
+        // POST: Servicios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var factura = await _context.Facturas.FindAsync(id);
-            _context.Facturas.Remove(factura);
+            var servicio = await _context.Servicios.FindAsync(id);
+            _context.Servicios.Remove(servicio);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FacturaExists(int id)
+        private bool ServicioExists(int id)
         {
-            return _context.Facturas.Any(e => e.FacturaId == id);
+            return _context.Servicios.Any(e => e.ServicioId == id);
         }
     }
 }

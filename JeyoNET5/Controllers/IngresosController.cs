@@ -23,6 +23,8 @@ namespace JeyoNET5.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Ingresos.Include(i => i.Paciente).Include(i => i.TipoIngreso).Include(i => i.Unidad);
+            ViewData["UnidadId"] = new SelectList(_context.Unidades, "Id", "Id");
+
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -38,11 +40,16 @@ namespace JeyoNET5.Controllers
                 .Include(i => i.Paciente)
                 .Include(i => i.TipoIngreso)
                 .Include(i => i.Unidad)
+                .Include(i => i.Servicios)
                 .FirstOrDefaultAsync(m => m.IngresoId == id);
             if (ingreso == null)
             {
                 return NotFound();
             }
+
+            var total = _context.Servicios.Where(t => t.IngresoId == id).Sum(i => i.Monto);
+            ViewBag.count = total;
+
 
             return View(ingreso);
         }

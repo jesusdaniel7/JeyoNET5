@@ -42,8 +42,8 @@ namespace JeyoNET5.Controllers
             var paciente = await _context.Pacientes
                 .Include(p => p.Sexo)
                  .Include(p => p.Ingresos)
+                 .ThenInclude(f => f.Factura)
                  .Include(p => p.Egresos)
-                 .Include(p => p.Facturas)
                  .Include(p => p.HistorialClinico)
                 .FirstOrDefaultAsync(m => m.PacienteId == id);
         
@@ -73,7 +73,7 @@ namespace JeyoNET5.Controllers
             {
                 _context.Add(paciente);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Create", "Ingresos", new { area = "" });
+                return RedirectToAction("Create", "Ingresos", new { id = paciente.PacienteId });
 
             }
             ViewData["SexoId"] = new SelectList(_context.Sexo, "SexoId", "SexoId", paciente.SexoId);

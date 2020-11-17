@@ -16,6 +16,7 @@ namespace JeyoNET5.Models
         public int UnidadId { get; set; }
         public virtual Unidad Unidad { get; set; }
         public bool estado { get; set; } = true;
+        public virtual Factura Factura { get; set; }
         public virtual ICollection<Servicio> Servicios { get; set; }
 
     }

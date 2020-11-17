@@ -20,7 +20,6 @@ namespace JeyoNET5.Models
         public string Telefono { get; set; }
         public string Direccion { get; set; }
         public virtual ICollection<Ingreso> Ingresos { get; set; }
-        public virtual ICollection<Factura> Facturas { get; set; }
         public virtual ICollection<Egreso> Egresos { get; set; }
         public virtual ICollection<HistorialClinico> HistorialClinico { get; set; }
 
