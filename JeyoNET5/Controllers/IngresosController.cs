@@ -79,12 +79,30 @@ namespace JeyoNET5.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IngresoId,FechaIngreso,TipoIngresoId,PacienteId,UnidadId")] Ingreso ingreso)
         {
+          
+
+          
             var pacienteID = ingreso.PacienteId;
             ingreso.estado = true;
             if (ModelState.IsValid)
             {
+                //Agregando servicio
                 _context.Add(ingreso);
                 await _context.SaveChangesAsync();
+
+                var ingresoConId = await _context.Ingresos.OrderByDescending(x => x.IngresoId).FirstOrDefaultAsync(x => x.IngresoId == ingreso.IngresoId);
+                //Agreando un servicio al ingreso
+                Servicio servicio = new Servicio()
+                {
+                    IngresoId = ingresoConId.IngresoId,
+                    Nombre = "Ingreso",
+                    Descripcion = "Costos por ingreso",
+                    Monto = 2000
+                };
+                _context.Servicios.Add(servicio);
+                await _context.SaveChangesAsync();
+
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["PacienteId"] = new SelectList(_context.Pacientes, "PacienteId", "PacienteId", ingreso.PacienteId);

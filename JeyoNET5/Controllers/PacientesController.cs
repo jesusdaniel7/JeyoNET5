@@ -62,12 +62,13 @@ namespace JeyoNET5.Controllers
             return View();
         }
 
+
         // POST: Pacientes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PacienteId,Nombre,Apelido,FechaNacimiento,FechaIngreso,SexoId,Nacionalidad,Seguro,Correo,Telefono,Direccion")] Paciente paciente)
+        public async Task<IActionResult> Create([Bind("PacienteId,Nombre,Apellido,FechaNacimiento,FechaIngreso,SexoId,Nacionalidad,Seguro,Correo,Telefono,Direccion")] Paciente paciente)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +103,7 @@ namespace JeyoNET5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PacienteId,Nombre,Apelido,FechaNacimiento,FechaIngreso,SexoId,Nacionalidad,Seguro,Correo,Telefono,Direccion")] Paciente paciente)
+        public async Task<IActionResult> Edit(int id, [Bind("PacienteId,Nombre,Apellido,FechaNacimiento,FechaIngreso,SexoId,Nacionalidad,Seguro,Correo,Telefono,Direccion")] Paciente paciente)
         {
             if (id != paciente.PacienteId)
             {

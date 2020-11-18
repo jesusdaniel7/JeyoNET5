@@ -66,7 +66,8 @@ namespace JeyoNET5.Controllers
             {
                 _context.Add(servicio);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var ingreso = await _context.Ingresos.FirstOrDefaultAsync(x => x.IngresoId == servicio.IngresoId);
+                return RedirectToAction("Details", "Ingresos", new { id = ingreso.IngresoId });
             }
             ViewData["IngresoId"] = new SelectList(_context.Ingresos, "IngresoId", "IngresoId", servicio.IngresoId);
             return View(servicio);

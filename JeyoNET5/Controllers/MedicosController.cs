@@ -57,7 +57,7 @@ namespace JeyoNET5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MedicoId,Nombre,Apelido,FechaNacimiento,SexoId,Nacionalidad,Cedula_Pasaporte,Correo,Telefono")] Medico medico)
+        public async Task<IActionResult> Create([Bind("MedicoId,Nombre,Apellido,FechaNacimiento,SexoId,Nacionalidad,Cedula_Pasaporte,Correo,Telefono")] Medico medico)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace JeyoNET5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MedicoId,Nombre,Apelido,FechaNacimiento,SexoId,Nacionalidad,Cedula_Pasaporte,Correo,Telefono")] Medico medico)
+        public async Task<IActionResult> Edit(int id, [Bind("MedicoId,Nombre,Apellido,FechaNacimiento,SexoId,Nacionalidad,Cedula_Pasaporte,Correo,Telefono")] Medico medico)
         {
             if (id != medico.MedicoId)
             {
