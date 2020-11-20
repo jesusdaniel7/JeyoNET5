@@ -77,7 +77,7 @@ namespace JeyoNET5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IngresoId,FechaIngreso,TipoIngresoId,PacienteId,UnidadId")] Ingreso ingreso)
+        public async Task<IActionResult> Create([Bind("IngresoId,FechaIngreso,TipoIngresoId,PacienteId,UnidadId, CondicionLlegada, CentroProcedencia,TelefonoAlterno,RelacionPaciente,Oficio,Preeindicaciones,CondicionEspecial")] Ingreso ingreso)
         {
           
 

@@ -4,84 +4,59 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - JeyoNET5</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/sidebar.css" />
 </head>
-<body>
-    @*
-        <header>
-
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">JeyoNET5</a>
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                                        aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
-                                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                                    <ul class="navbar-nav flex-grow-1">
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Egresos" asp-action="Index">Egresos</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Facturas" asp-action="Index">Facturas</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="HistorialClinico" asp-action="Index">HistorialClinico</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Ingresos" asp-action="Index">Ingresos</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Medicos" asp-action="Index">Medicos</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Sexo" asp-action="Index">Sexo</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="TipoIngresos" asp-action="Index">TipoIngresos</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="TipoEgresos" asp-action="Index">TipoEgresos</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="TipoUnidad" asp-action="Index">TipoUnidad</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Unidad" asp-action="Index">Unidad</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                                        </li>
-                                    </ul>
-                                    <partial name="_LoginPartial" />
-                                </div>
-                            </div>
-                        </nav>
-            </header>
-    *@
-    <div class="d-flex" id="wrapper">
+<body class="">
+    <div class="d-flex " id="wrapper">
 
         <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Jeyo </div>
-            <div class="list-group list-group-flush">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Ingresos" asp-action="Index">Ingresos</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Egresos" asp-action="Index">Egresos</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Facturas" asp-action="Index">Facturas</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="HistorialClinico" asp-action="Index">HistorialClinico</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Sexo" asp-action="Index">Sexo</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Medicos" asp-action="Index">Medicos</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="TipoIngresos" asp-action="Index">TipoIngresos</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="TipoEgresos" asp-action="Index">TipoEgresos</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="TipoUnidad" asp-action="Index">TipoUnidad</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Unidad" asp-action="Index">Unidad</a>
+        <div class="bg-light border-right align linear-gradient" id="sidebar-wrapper">
+
+            <div>
+
+                <div class="img-container  ">
+                    <img src="~/icon/escudo.png" class="escudo mt-3" alt="Alternate Text" />
+                    <p class="text-center text-gray-light site-map">Republica Dominicana <br />Mapa del sitio</p>
+
+                    <hr />
+                </div>
+            <div class="list-group list-group-flush ">
+                <div class="py-3">
+                <img src="~/icon/ingreso1.png" class="pl-3" alt="Alternate Text" />
+                <a class="nav-link text-white  d-inline" asp-area="" asp-controller="Ingresos" asp-action="Index">Ingresos</a>
+                </div>
+                <div class="py-3">
+                    <img src="~/icon/Egreso.png" class="pl-3" alt="Alternate Text" />
+                <a class="nav-link text-white  d-inline" asp-area="" asp-controller="Egresos" asp-action="Index">Egresos</a>
+                </div>
+                <div class="py-3">
+                    <img src="~/icon/paciente.png" class="pl-3" alt="Alternate Text" />
+
+                    <a class="nav-link text-white  d-inline" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a>
+                </div>
+                <div class="py-3">
+                    <img src="~/icon/factura.png" class="pl-3" alt="Alternate Text" />
+
+                    <a class="nav-link text-white d-inline" asp-area="" asp-controller="Facturas" asp-action="Index">Facturas</a>
+                </div>
+                <div class="py-3">
+                    <img src="~/icon/historial.png" class="pl-3" alt="Alternate Text" />
+
+                    <a class="nav-link text-white d-inline" asp-area="" asp-controller="HistorialClinico" asp-action="Index">Historial Clinico</a>
+                </div>
+
+            </div>
+                
+            </div>
+
+            <div class="pb-5">
+
+                <partial name="_LoginPartial" />
+
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -89,7 +64,8 @@
         <div id="page-content-wrapper">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+                
+                <button class="btn" id="menu-toggle"><img src="~/icon/adjust.png" alt="Alternate Text" /></button>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -97,28 +73,25 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
+                                Mantenimiento
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Sexo" asp-action="Index">Sexo</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Medicos" asp-action="Index">Medicos</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="TipoIngresos" asp-action="Index">TipoIngresos</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="TipoEgresos" asp-action="Index">TipoEgresos</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="TipoUnidad" asp-action="Index">TipoUnidad</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Unidad" asp-action="Index">Unidad</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Servicios" asp-action="Index">Servicios</a>
                             </div>
                         </li>
                     </ul>
                 </div>
             </nav>
 
-            <div class="container-fluid">
+            <div class="container-fluid  main">
                 <main role="main" class="pb-3">
                     @RenderBody()
                 </main>
@@ -129,11 +102,6 @@
     </div>
     <!-- /#wrapper -->
 
-    @*<div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>*@
 
     <footer class="border-top footer text-muted">
         <div class="container">

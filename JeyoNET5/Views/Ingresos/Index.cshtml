@@ -4,10 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+
+<h1>Ingresos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Agregar</a>
 </p>
 <table class="table">
     <thead>
@@ -31,30 +32,31 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaIngreso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoIngreso.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Paciente.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Unidad.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IngresoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IngresoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IngresoId">Delete</a> |
-                <a asp-controller="Servicios" asp-action="Create" asp-route-id="@item.IngresoId">Agregar servicio</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaIngreso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoIngreso.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paciente.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unidad.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IngresoId">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.IngresoId">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IngresoId">Eliminar</a> |
+                    <a asp-controller="Servicios" asp-action="Create" asp-route-id="@item.IngresoId">Agregar servicio</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -110,11 +110,32 @@ namespace JeyoNET5.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("CentroProcedencia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CondicionEspecial")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CondicionLlegada")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("FechaIngreso")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Oficio")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("PacienteId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Preeindicaciones")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RelacionPaciente")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TelefonoAlterno")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TipoIngresoId")
                         .HasColumnType("int");
@@ -181,7 +202,10 @@ namespace JeyoNET5.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Apelido")
+                    b.Property<string>("Apellido")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cedula_pasaporte")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Correo")
@@ -200,6 +224,9 @@ namespace JeyoNET5.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Parentesco")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Seguro")

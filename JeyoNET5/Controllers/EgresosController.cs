@@ -90,7 +90,6 @@ namespace JeyoNET5.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
 
 

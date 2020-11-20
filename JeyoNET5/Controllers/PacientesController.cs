@@ -22,7 +22,8 @@ namespace JeyoNET5.Controllers
         // GET: Pacientes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Pacientes.Include(p => p.Sexo);
+           // var lastIngreso = await _context.Ingresos.OrderByDescending(x => x.PacienteId).FirstOrDefaultAsync
+            var applicationDbContext = _context.Pacientes.Include(p => p.Sexo).Include(x => x.Ingresos).Include(x => x.Egresos);
             return View(await applicationDbContext.ToListAsync());
 
         }
@@ -58,7 +59,7 @@ namespace JeyoNET5.Controllers
         // GET: Pacientes/Create
         public IActionResult Create()
         {
-            ViewData["SexoId"] = new SelectList(_context.Sexo, "SexoId", "SexoId");
+            ViewData["SexoId"] = new SelectList(_context.Sexo, "SexoId", "Nombre");
             return View();
         }
 
@@ -68,7 +69,7 @@ namespace JeyoNET5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PacienteId,Nombre,Apellido,FechaNacimiento,FechaIngreso,SexoId,Nacionalidad,Seguro,Correo,Telefono,Direccion")] Paciente paciente)
+        public async Task<IActionResult> Create([Bind("PacienteId,Nombre,Apellido,FechaNacimiento,FechaIngreso,SexoId,Nacionalidad,Cedula_pasaporte,Parentesco,Seguro,Correo,Telefono,Direccion")] Paciente paciente)
         {
             if (ModelState.IsValid)
             {

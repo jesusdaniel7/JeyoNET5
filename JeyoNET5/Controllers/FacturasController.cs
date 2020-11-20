@@ -48,6 +48,9 @@ namespace JeyoNET5.Controllers
         // GET: Facturas/Create
         public async Task<IActionResult> Create(int? id)
         {
+            var exists = await _context.Facturas.AnyAsync(x => x.IngresoId == id);
+            if (exists) { return NotFound("La factura ya existe"); }
+
             ViewBag.Ingreso = await _context.Ingresos.Include(x => x.Paciente).FirstOrDefaultAsync(x => x.IngresoId == id);
             ViewBag.Monto = _context.Servicios.Where(x => x.IngresoId == id).Sum(x => x.Monto);
 
@@ -62,14 +65,15 @@ namespace JeyoNET5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FacturaId,Codigo,Fecha,Monto,Descuento,Total,Estado,IngresoId")] Factura factura)
+        public async Task<IActionResult> Create([Bind("FacturaId,Fecha,Monto,Descuento,IngresoId")] Factura factura)
         {
-
+            factura.Codigo = $"jeyo{factura.IngresoId}{factura.Fecha}";
+            factura.Estado = true;
             var exists = await _context.Facturas.AnyAsync(x => x.IngresoId == factura.IngresoId);
-
+            if (exists) { return NotFound("La factura ya existe"); }
             factura.Total = factura.Monto - (factura.Monto * factura.Descuento / 100);
 
-            if (exists){ return NotFound("La factura ya existe"); }
+           
             if (ModelState.IsValid)
             {
                 _context.Add(factura);

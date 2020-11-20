@@ -4,9 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Detalles.</h1>
-
-
+<h1 >Detalles   </h1>
 <div>
     <h4>Ingreso correspondiente al paciente @Model.Paciente.Nombre @Model.Paciente.Apellido </h4>
     <hr />
@@ -41,6 +39,49 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.estado)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CondicionLlegada)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CondicionLlegada)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CentroProcedencia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CentroProcedencia)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TelefonoAlterno)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TelefonoAlterno)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RelacionPaciente)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RelacionPaciente)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Oficio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Oficio)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Preeindicaciones)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Preeindicaciones)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CondicionEspecial)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CondicionEspecial)
+        </dd>
+
         <dt class="col-sm-2">
             Monto Total:
         </dt>
@@ -78,7 +119,7 @@
     }
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.IngresoId">Edit</a> |
-    <a asp-action="Index">Back to List</a> |
+    <a asp-action="Edit" asp-route-id="@Model.IngresoId">Editar</a> |
+    <a asp-action="Index">volver</a> |
     <a asp-controller="Servicios" asp-action="Create" asp-route-id="@Model.IngresoId">Agregar servicio</a>
 </div>

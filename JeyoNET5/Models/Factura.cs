@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace JeyoNET5.Models
         public Double Descuento { get; set; } = 0;
         public Double Total { get; set; }
         public bool Estado { get; set; }
+        [DisplayName("Ingreso")]
         public int IngresoId { get; set; }
         public virtual Ingreso Ingreso { get; set; }
 

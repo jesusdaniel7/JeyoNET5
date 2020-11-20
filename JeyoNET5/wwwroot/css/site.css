@@ -59,8 +59,9 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: 'Lato', sans-serif;
 }
 .footer {
   position: absolute;
@@ -68,4 +69,63 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+.linear-gradient {
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(178,0,241,1) 0%,rgba(95,0,216,1) 100%);
+}
+
+.align {
+    color: white;
+    font-family: 'Lato', sans-serif;
+    flex-flow: column;
+    display: flex;
+    justify-content: space-between;
+}
+
+.img-container{
+ 
+
+}
+.escudo {
+    margin:0 auto;
+   /* margin-top: 8px;
+    margin-left: 66px;*/
+    padding-right: 0;
+    display: block;
+    width: 50px;
+}
+
+.text-gray {
+    color: #6B6B6B;
+}
+
+.text-gray-light {
+    color: #E1E1E1;
+}
+
+.login{
+    width:70%;
+    display:flex;
+    padding:30px;
+}
+
+.login-main{
+    margin:0 auto;
+    width:400px;
+    border-radius:30px 30px 0px 0px;
+}
+
+.login-section{
+}
+.padding-40{
+    padding:40px;
+}
+.bg-green {
+    background: #10CD45;
+}
+
+.site-map{
+    font-size:14px;
 }

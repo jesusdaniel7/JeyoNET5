@@ -4,9 +4,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1 >Ingreso</h1>
 
-<h4>Ingreso para @ViewBag.paciente.Nombre @ViewBag.paciente.Apelido </h4>
+<h4>Ingreso para @ViewBag.paciente.Nombre @ViewBag.paciente.Apellido </h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -19,32 +19,55 @@
             </div>
             <div class="form-group">
                 <label asp-for="TipoIngresoId" class="control-label"></label>
-                <select asp-for="TipoIngresoId" class ="form-control" asp-items="ViewBag.TipoIngresoId"></select>
+                <select asp-for="TipoIngresoId" class="form-control" asp-items="ViewBag.TipoIngresoId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="PacienteId" class="control-label"></label>
-                <input asp-for="PacienteId" class="form-control" value="@ViewBag.id"/>
+                <input asp-for="PacienteId" class="form-control" value="@ViewBag.id" />
 
                 @*<select asp-for="PacienteId" class="form-control" asp-items="@ViewBag.id"></select>*@
             </div>
             <div class="form-group">
                 <label asp-for="UnidadId" class="control-label"></label>
-                <select asp-for="UnidadId" class ="form-control" asp-items="ViewBag.UnidadId"></select>
+                <select asp-for="UnidadId" class="form-control" asp-items="ViewBag.UnidadId"></select>
             </div>
-            @*<div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="estado" /> @Html.DisplayNameFor(model => model.estado)
-                </label>
-            </div>*@
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="CondicionLlegada" class="control-label"></label>
+                <input asp-for="CondicionLlegada" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="CentroProcedencia" class="control-label"></label>
+                <input asp-for="CentroProcedencia" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="TelefonoAlterno" class="control-label"></label>
+                <input asp-for="TelefonoAlterno" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="RelacionPaciente" class="control-label"></label>
+                <input asp-for="RelacionPaciente" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Oficio" class="control-label"></label>
+                <input asp-for="Oficio" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Preeindicaciones" class="control-label"></label>
+                <input asp-for="Preeindicaciones" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="CondicionEspecial" class="control-label"></label>
+                <input asp-for="CondicionEspecial" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ingresar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver</a>
 </div>
 
 @section Scripts {

@@ -9,12 +9,14 @@ namespace JeyoNET5.Models
     {
         public int PacienteId { get; set; }
         public string Nombre { get; set; }
-        public string Apelido { get; set; }
+        public string Apellido { get; set; }
         public DateTime FechaNacimiento  { get; set; }
         public DateTime FechaIngreso { get; set; }
         public int SexoId { get; set; }
         public virtual Sexo Sexo { get; set; }
         public string Nacionalidad { get; set; }
+        public string Cedula_pasaporte { get; set; }
+        public string Parentesco { get; set; }
         public string Seguro { get; set; } = "Ninguno";
         public string Correo { get; set; }
         public string Telefono { get; set; }
